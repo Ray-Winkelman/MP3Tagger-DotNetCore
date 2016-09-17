@@ -1,0 +1,13 @@
+﻿<Properties StartupItem="src/MP3Tagger/MP3Tagger.xproj">
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/MP3Tagger/Program.cs">
+    <Files>
+      <File FileName="src/MP3Tagger/Program.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.src.MP3Tagger PreferredExecutionTarget="Profile" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
