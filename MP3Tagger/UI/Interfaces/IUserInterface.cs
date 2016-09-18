@@ -1,4 +1,4 @@
-﻿namespace UI.Interfaces
+﻿namespace MP3Tagger.UI.Interfaces
 {
 	public interface IUserInterface
 	{

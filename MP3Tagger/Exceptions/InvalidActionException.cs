@@ -1,7 +1,7 @@
 ﻿using System;
-using Resources;
+using MP3Tagger.Resources;
 
-namespace Exceptions
+namespace MP3Tagger.Exceptions
 {
 	public class InvalidActionException : Exception
 	{

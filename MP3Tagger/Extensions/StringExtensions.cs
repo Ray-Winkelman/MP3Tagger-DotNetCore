@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Extensions.Strings
+namespace MP3Tagger.Extensions.Strings
 {
 	public static class StringExtensions
 	{

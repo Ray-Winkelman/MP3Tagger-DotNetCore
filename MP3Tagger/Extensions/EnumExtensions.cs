@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Extensions.Enumerations
+namespace MP3Tagger.Extensions.Enumerations
 {
 	public static class EnumExtensions
 	{

@@ -1,7 +1,7 @@
 ﻿using System;
-using UI.Interfaces;
+using MP3Tagger.UI.Interfaces;
 
-namespace UI
+namespace MP3Tagger.UI
 {
 	public class ConsolePlus : IUserInterface
 	{

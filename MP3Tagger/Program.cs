@@ -1,8 +1,9 @@
-﻿using UI.Interfaces;
-using UI;
-using Exceptions;
-using Logger;
-using Resources;
+﻿using MP3Tagger.UI.Interfaces;
+using MP3Tagger.UI;
+using MP3Tagger.Exceptions;
+using MP3Tagger.Logger;
+using MP3Tagger.Resources;
+using MP3Tagger.Core;
 
 namespace MP3Tagger
 {

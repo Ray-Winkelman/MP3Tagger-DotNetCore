@@ -1,36 +1,17 @@
-﻿<Properties StartupItem="src/MP3Tagger/MP3Tagger.xproj">
-  <MonoDevelop.Ide.Workbench ActiveDocument="src/MP3Tagger/Dispatcher/Dispatcher.cs">
+﻿<Properties StartupItem="MP3Tagger.UnitTests/MP3Tagger.UnitTests.xproj">
+  <MonoDevelop.Ide.ItemProperties.MP3Tagger PreferredExecutionTarget="Profile" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MP3Tagger.UnitTests/Program.cs">
     <Files>
-      <File FileName="src/MP3Tagger/Program.cs" Line="1" Column="1" />
-      <File FileName="src/MP3Tagger/Dispatcher/Dispatcher.cs" Line="83" Column="35" />
+      <File FileName="MP3Tagger/Core/Dispatcher.cs" Line="5" Column="17" />
+      <File FileName="MP3Tagger.UnitTests/Program.cs" Line="17" Column="1" />
+      <File FileName="MP3Tagger/Program.cs" Line="1" Column="17" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="MP3Tagger" expanded="True">
-            <Node name="src" expanded="True">
-              <Node name="MP3Tagger" expanded="True">
-                <Node name="Dependencies" expanded="True" />
-                <Node name="Dispatcher" expanded="True">
-                  <Node name="Enumerations" expanded="True" />
-                  <Node name="Dispatcher.cs" selected="True" />
-                </Node>
-                <Node name="Exceptions" expanded="True" />
-                <Node name="Extensions" expanded="True" />
-                <Node name="UI" expanded="True">
-                  <Node name="Interfaces" expanded="True" />
-                </Node>
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.src.MP3Tagger PreferredExecutionTarget="Profile" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.MP3Tagger.UnitTests PreferredExecutionTarget="MonoDevelop.Default" />
+  <AuthorInfo Name="Ray Winkelman" Email="raywinkelman@gmail.com" Copyright="Ray Winkelman © 2016" Company="" Trademark="" />
 </Properties>

@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Extensions.Strings;
-using Extensions.Enumerations;
-using UI.Interfaces;
-using Enumerations;
-using Exceptions;
+using MP3Tagger.Extensions.Strings;
+using MP3Tagger.Extensions.Enumerations;
+using MP3Tagger.UI.Interfaces;
+using MP3Tagger.Core.Enumerations;
+using MP3Tagger.Exceptions;
+using MP3Tagger.Configuration;
+using MP3Tagger.Logger;
+using MP3Tagger.Resources;
 
-namespace MP3Tagger
+namespace MP3Tagger.Core
 {
 	public class Dispatcher
 	{
@@ -64,6 +67,16 @@ namespace MP3Tagger
 				throw new InvalidAttributeException();
 			}
 
+			if (Config.VerboseLogEnabled)
+			{
+				Log.Info(Strings.ValidArguments);
+			}
+
+			if (Config.VerboseUIEnabled)
+			{
+				_ui.Update(Strings.ValidArguments);
+			}
+
 			// TODO: Actually dispatch now. Haha.
 
 			return 0;
@@ -78,6 +91,16 @@ namespace MP3Tagger
 		/// <param name="options">Options.</param>
 		void ParseArguments(string[] arguments, out EActionArgument action, out EMP3Attribute attribute, out List<EOptionArgument> options)
 		{
+			if (Config.VerboseLogEnabled)
+			{
+				Log.Info(Strings.BeganParsingArguments);
+			}
+
+			if (Config.VerboseUIEnabled)
+			{
+				_ui.Update(Strings.BeganParsingArguments);
+			}
+
 			// Instantiate the output variables.
 			action = EActionArgument.None;
 			attribute = EMP3Attribute.None;
@@ -98,6 +121,16 @@ namespace MP3Tagger
 				{
 					attribute = _mp3attributes[argument];
 				}
+			}
+
+			if (Config.VerboseLogEnabled)
+			{
+				Log.Info(Strings.CompletedParsingArguments);
+			}
+
+			if (Config.VerboseUIEnabled)
+			{
+				_ui.Update(Strings.CompletedParsingArguments);
 			}
 		}
 	}

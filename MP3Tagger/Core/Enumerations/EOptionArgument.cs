@@ -1,5 +1,4 @@
-﻿using System;
-namespace MP3Tagger
+﻿namespace MP3Tagger.Core.Enumerations
 {
 	/// <summary>
 	/// Options to be supplied regardless of action.

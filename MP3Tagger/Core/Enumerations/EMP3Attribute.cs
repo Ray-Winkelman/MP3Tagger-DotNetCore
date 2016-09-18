@@ -1,4 +1,4 @@
-﻿namespace Enumerations
+﻿namespace MP3Tagger.Core.Enumerations
 {
 	/// <summary>
 	/// The attributes currently supported by Google Play Music (Sept 17, 2016)
