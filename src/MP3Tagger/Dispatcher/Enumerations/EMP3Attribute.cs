@@ -5,6 +5,7 @@
 	/// </summary>
 	public enum EMP3Attribute
 	{
+		None,
 		TrackName,
 		Artist,
 		AlbumArtist,

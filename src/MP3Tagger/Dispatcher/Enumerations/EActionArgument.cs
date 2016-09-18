@@ -6,8 +6,10 @@ namespace MP3Tagger
 	/// </summary>
 	public enum EActionArgument
 	{
+		None,
 		Clean,
-		Clear
+		Clear,
+		Set
 	}
 }
 
