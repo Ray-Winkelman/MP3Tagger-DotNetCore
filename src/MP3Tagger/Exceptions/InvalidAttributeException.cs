@@ -1,11 +1,12 @@
 ﻿using System;
+using Resources;
 
 namespace Exceptions
 {
 	public class InvalidAttributeException : Exception
 	{
 		public InvalidAttributeException()
-		: base("None, or an invalid attribute was provided.")
+			: base(Strings.InvalidAttribute)
 		{
 		}
 

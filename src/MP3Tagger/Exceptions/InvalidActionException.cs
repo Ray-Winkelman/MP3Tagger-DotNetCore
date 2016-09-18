@@ -1,11 +1,12 @@
 ﻿using System;
+using Resources;
 
 namespace Exceptions
 {
 	public class InvalidActionException : Exception
 	{
 		public InvalidActionException()
-		: base("None, or an invalid action was provided.")
+			: base(Strings.InvalidAction)
 		{
 		}
 
