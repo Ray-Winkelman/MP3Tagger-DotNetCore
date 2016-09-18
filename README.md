@@ -1,5 +1,7 @@
 # MP3 Tagger
-A cross-platform .NET Core console application for Linux, and Windows that prepares MP3 files for Google Play Music libraries.
+A cross-platform .NET Core console application for Linux, and Windows that prepares MP3 files for Google Play Music libraries, by cleaning noise from the MP3 attribute fields, setting attributes to specified values, or clearing attributes altogether.
+
+The program will work on single specified files, and also have the ability to recurse directories, using wildcard patterns to affect files. 
 
 ## Required To Develop with Linux:
 
