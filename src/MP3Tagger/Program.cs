@@ -1,12 +1,16 @@
-﻿using System;
-
+﻿using UI.Interfaces;
+using UI;
 namespace MP3Tagger
 {
 	public class Program
 	{
 		public static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			// Injections
+			IUserInterface ui = new ConsolePlus();
+
+			Dispatcher dispatcher = new Dispatcher(ui);
+			dispatcher.Dispatch(args);
 		}
 	}
 }
