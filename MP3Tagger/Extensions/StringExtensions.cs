@@ -8,5 +8,10 @@ namespace MP3Tagger.Extensions.Strings
 		{
 			return source.IndexOf(toCheck, StringComparison.OrdinalIgnoreCase) >= 0;
 		}
+
+		public static bool EqualsInsensitive(this string source, string toCheck)
+		{
+			return source.ToLower() == toCheck.ToLower();
+		}
 	}
 }

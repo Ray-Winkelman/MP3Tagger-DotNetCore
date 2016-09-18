@@ -4,6 +4,7 @@ using MP3Tagger.Extensions.Strings;
 using MP3Tagger.Extensions.Enumerations;
 using MP3Tagger.UI.Interfaces;
 using MP3Tagger.Core.Enumerations;
+using MP3Tagger.Core.Commands;
 using MP3Tagger.Exceptions;
 using MP3Tagger.Configuration;
 using MP3Tagger.Logger;
@@ -18,8 +19,23 @@ namespace MP3Tagger.Core
 		Dictionary<string, EOptionArgument> _options = new Dictionary<string, EOptionArgument>();
 		Dictionary<string, EMP3Attribute> _mp3attributes = new Dictionary<string, EMP3Attribute>();
 
+		// Command.
+		Command _command;
+
 		// UI
 		IUserInterface _ui;
+
+		/// <summary>
+		/// The command to be executed by the Dispatcher.
+		/// </summary>
+		/// <value>The command.</value>
+		public Command Command
+		{
+			get
+			{
+				return _command;
+			}
+		}
 
 		// Constructor
 		public Dispatcher(IUserInterface ui)
@@ -49,7 +65,7 @@ namespace MP3Tagger.Core
 		/// Determine the code paths to be executed, by iterating over the application arguments.
 		/// </summary>
 		/// <param name="arguments">Arguments.</param>
-		public int Dispatch(string[] arguments)
+		public void Dispatch(string[] arguments)
 		{
 			EActionArgument action;
 			EMP3Attribute attribute;
@@ -57,15 +73,27 @@ namespace MP3Tagger.Core
 
 			ParseArguments(arguments, out action, out attribute, out options);
 
-			if (action == EActionArgument.None)
-			{
-				throw new InvalidActionException();
-			}
-
 			if (attribute == EMP3Attribute.None)
 			{
 				throw new InvalidAttributeException();
 			}
+
+			switch (action)
+			{
+				case EActionArgument.Clean:
+					_command = new CleanCommand(attribute);
+					break;
+				case EActionArgument.Clear:
+					_command = new ClearCommand(attribute);
+					break;
+				case EActionArgument.Set:
+					_command = new SetCommand(attribute);
+					break;
+				default:
+					throw new InvalidActionException();
+			}
+
+			SetOptions(options);
 
 			if (Config.VerboseLogEnabled)
 			{
@@ -77,9 +105,7 @@ namespace MP3Tagger.Core
 				_ui.Update(Strings.ValidArguments);
 			}
 
-			// TODO: Actually dispatch now. Haha.
-
-			return 0;
+			_command.Execute();
 		}
 
 		/// <summary>
@@ -91,16 +117,6 @@ namespace MP3Tagger.Core
 		/// <param name="options">Options.</param>
 		void ParseArguments(string[] arguments, out EActionArgument action, out EMP3Attribute attribute, out List<EOptionArgument> options)
 		{
-			if (Config.VerboseLogEnabled)
-			{
-				Log.Info(Strings.BeganParsingArguments);
-			}
-
-			if (Config.VerboseUIEnabled)
-			{
-				_ui.Update(Strings.BeganParsingArguments);
-			}
-
 			// Instantiate the output variables.
 			action = EActionArgument.None;
 			attribute = EMP3Attribute.None;
@@ -109,28 +125,37 @@ namespace MP3Tagger.Core
 			// Loop through the arguments and check to see if anything valid was supplied.
 			foreach (string argument in arguments)
 			{
-				if (_actions.Any(a => a.Key.ContainsInsensitive(argument)))
+				_ui.Update(argument);
+
+				if (_actions.Any(a => a.Key.EqualsInsensitive(argument)))
 				{
-					action = _actions[argument];
+					action = _actions[argument.ToLower()];
 				}
-				else if (_options.Any(o => o.Key.ContainsInsensitive(argument)))
+				else if (_options.Any(o => o.Key.EqualsInsensitive(argument)))
 				{
-					options.Add(_options[argument]);
+					options.Add(_options[argument.ToLower()]);
 				}
-				else if (_mp3attributes.Any(a => a.Key.ContainsInsensitive(argument)))
+				else if (_mp3attributes.Any(a => a.Key.EqualsInsensitive(argument)))
 				{
-					attribute = _mp3attributes[argument];
+					attribute = _mp3attributes[argument.ToLower()];
+				}
+				else
+				{
+					throw new InvalidArgumentException(argument);
 				}
 			}
+		}
 
-			if (Config.VerboseLogEnabled)
+		void SetOptions(List<EOptionArgument> options)
+		{
+			if (options.Any(a => a == EOptionArgument.Log))
 			{
-				Log.Info(Strings.CompletedParsingArguments);
+				Config.VerboseLogEnabled = true;
 			}
 
-			if (Config.VerboseUIEnabled)
+			if (options.Any(a => a == EOptionArgument.Verbose))
 			{
-				_ui.Update(Strings.CompletedParsingArguments);
+				Config.VerboseUIEnabled = true;
 			}
 		}
 	}

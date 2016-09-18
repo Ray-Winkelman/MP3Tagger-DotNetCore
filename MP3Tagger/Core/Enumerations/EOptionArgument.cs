@@ -5,7 +5,8 @@
 	/// </summary>
 	public enum EOptionArgument
 	{
-		Verbose
+		Verbose,
+		Log
 	}
 }
 

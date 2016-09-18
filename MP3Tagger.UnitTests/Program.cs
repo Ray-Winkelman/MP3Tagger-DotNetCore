@@ -1,21 +1,37 @@
 ﻿using System;
-using MP3Tagger.Core;
-using MP3Tagger.UI.Interfaces;
-using MP3Tagger.UnitTests.UI.Overrrides;
+using System.Collections.Generic;
 
 namespace MP3Tagger.UnitTests
 {
-	public class Program
+	public partial class Program
 	{
+		static List<UnitTest> tests = new List<UnitTest>();
+
 		public static void Main(string[] args)
 		{
-			// Inject a UI override to silence the application.
-			IUserInterface ui = new TestUI();
+			MakeTests();
 
-			Dispatcher dispatcher = new Dispatcher(ui);
+			string result = string.Empty;
 
+			foreach (UnitTest test in tests)
+			{
+				if (test.RunTest())
+				{
+					result = "[Yes]   ";
+					Console.ForegroundColor = ConsoleColor.Green;
+				}
+				else
+				{
+					result = "[No]    ";
+					Console.ForegroundColor = ConsoleColor.Red;
+				}
 
-			Console.WriteLine("Test 1 passed!!");
+				Console.Write(Environment.NewLine + result);
+				Console.ForegroundColor = ConsoleColor.White;
+				Console.WriteLine(test.Name);
+			}
+
+			Environment.Exit(0);
 		}
 	}
 }

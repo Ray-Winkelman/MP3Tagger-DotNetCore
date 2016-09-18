@@ -1,4 +1,5 @@
-﻿using MP3Tagger.UI.Interfaces;
+﻿using System;
+using MP3Tagger.UI.Interfaces;
 using MP3Tagger.UI;
 using MP3Tagger.Exceptions;
 using MP3Tagger.Logger;
@@ -11,14 +12,19 @@ namespace MP3Tagger
 	{
 		public static void Main(string[] args)
 		{
+			IUserInterface ui = null;
 
-			// Injections
-			IUserInterface ui = new ConsolePlus();
-
-			// Almost 100% of code coverage will bubble up to here. I wanted to update the UI with exceptions. 
-			// So I'll catch anything going wrong with the injection of the UI dependancy seperately.
+			// 100% of code coverage will bubble up to here. I wanted to update the UI with exceptions. 
 			try
 			{
+				ui = new ConsolePlus();
+
+				if (args.Length < 2)
+				{
+					ui.Update(Strings.TooFewArguments);
+					Environment.Exit(1);
+				}
+
 				Dispatcher dispatcher = new Dispatcher(ui);
 				dispatcher.Dispatch(args);
 			}
@@ -32,7 +38,11 @@ namespace MP3Tagger
 				Log.Error(ex);
 				ui.Update(Strings.InvalidAttribute);
 			}
-
+			catch (Exception ex)
+			{
+				Log.Error(ex);
+				ui.Update(Strings.GenericError);
+			}
 		}
 	}
 }
